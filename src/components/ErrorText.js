@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 function ErrorText({ message }) {
-    return <div>{message}</div>;
+    return <div data-testid="fetchError">{message}</div>;
 }
 
 ErrorText.propTypes = {

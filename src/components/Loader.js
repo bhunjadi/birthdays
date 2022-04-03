@@ -1,3 +1,3 @@
 export default function Loader() {
-    return <div>Loading...</div>;
+    return <div data-testid="loader">Loading...</div>;
 }

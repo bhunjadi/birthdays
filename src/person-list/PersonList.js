@@ -14,7 +14,8 @@ function PersonList() {
 
         async function getData() {
             try {
-                const data = await (await fetch(API_URL)).json();
+                const res = await fetch(API_URL);
+                const data = await res.json();
                 setPersons(data.results);
             } catch (err) {
                 setError(err);
@@ -38,7 +39,9 @@ function PersonList() {
         <div>
             {persons.map((person, index) => {
                 return (
-                    <div data-testid={`person-${index}`}>
+                    // We have to use index as a key since there is no valid property on person object
+                    // eslint-disable-next-line react/no-array-index-key
+                    <div data-testid="person" key={index}>
                         {person.name.first}
                     </div>
                 );
