@@ -1,16 +1,28 @@
-import PropTypes from 'prop-types';
 import './PersonList.scss';
+import { useNavigate } from 'react-router-dom';
 import { formatBirthDate, getPersonName } from '../utils/personUtils';
+import PERSON_PROP_TYPE from '../utils/personPropType';
+import PersonImage from '../components/PersonImage';
 
 function PersonListItem({ person }) {
+    const navigate = useNavigate();
+
     return (
-        <div className="person-list-item" data-testid="person">
-            <div className="thumbnail">
-                <img
-                    src={person.picture.thumbnail}
-                    alt={getPersonName(person)}
-                />
-            </div>
+        <div
+            className="person-list-item"
+            data-testid="person"
+            role="button"
+            tabIndex={0}
+            aria-hidden="true"
+            onClick={() => {
+                navigate('/profile', {
+                    state: {
+                        person,
+                    },
+                });
+            }}
+        >
+            <PersonImage person={person} />
 
             <div className="person-details">
                 <div className="person-name">{getPersonName(person)}</div>
@@ -22,19 +34,8 @@ function PersonListItem({ person }) {
     );
 }
 
-PersonListItem.propTypes = PropTypes.shape({
-    name: PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        first: PropTypes.string.isRequired,
-        last: PropTypes.string.isRequired,
-    }).isRequired,
-    dob: PropTypes.shape({
-        date: PropTypes.string.isRequired,
-        age: PropTypes.number.isRequired,
-    }).isRequired,
-    picture: PropTypes.shape({
-        thumbnail: PropTypes.string.isRequired,
-    }),
-}).isRequired;
+PersonListItem.propTypes = {
+    person: PERSON_PROP_TYPE.isRequired,
+};
 
 export default PersonListItem;
