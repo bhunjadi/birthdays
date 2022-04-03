@@ -11,6 +11,9 @@ const PERSON_1 = {
         date: '1980-02-26T07:16:39.510Z',
         age: 42,
     },
+    picture: {
+        thumbnail: 'someurl',
+    },
 };
 
 const PERSON_2 = {
@@ -22,6 +25,9 @@ const PERSON_2 = {
     dob: {
         date: '1983-04-17T18:21:44.281Z',
         age: 39,
+    },
+    picture: {
+        thumbnail: 'someurl',
     },
 };
 
@@ -41,10 +47,6 @@ function getFetchStub(data, error) {
 }
 
 describe('PersonList', () => {
-    afterEach(() => {
-        global.fetch.mockClear();
-    });
-
     it('shows returned people from the API', async () => {
         jest.spyOn(global, 'fetch').mockImplementation(
             getFetchStub({

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import ErrorText from '../components/ErrorText';
 import Loader from '../components/Loader';
 import { API_URL } from '../const';
+import PersonListItem from './PersonListItem';
 
 function PersonList() {
     const [persons, setPersons] = useState([]);
@@ -36,14 +37,16 @@ function PersonList() {
     }
 
     return (
-        <div>
+        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
             {persons.map((person, index) => {
                 return (
                     // We have to use index as a key since there is no valid property on person object
-                    // eslint-disable-next-line react/no-array-index-key
-                    <div data-testid="person" key={index}>
-                        {person.name.first}
-                    </div>
+                    <PersonListItem
+                        data-testid="person"
+                        // eslint-disable-next-line react/no-array-index-key
+                        key={index}
+                        person={person}
+                    />
                 );
             })}
         </div>

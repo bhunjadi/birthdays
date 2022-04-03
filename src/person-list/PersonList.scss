@@ -1,0 +1,28 @@
+.person-list-item {
+    padding: 16px;
+    padding-bottom: 20px;
+    width: 344px;
+    height: 64px;
+
+    font-size: 13px;
+
+    display: flex;
+
+    .thumbnail {
+        img {
+            height: 69px;
+            width: 69px;
+
+            border-radius: 50%;
+            background: #C4C4C4;
+        }
+    }
+
+    .person-details {
+        margin-left: 13px;
+        .person-name {
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+    }
+}
