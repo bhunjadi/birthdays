@@ -1,4 +1,5 @@
 import { render, screen, waitFor, within } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import PersonList from './PersonList';
 
 const PERSON_1 = {
@@ -54,7 +55,7 @@ describe('PersonList', () => {
             }),
         );
 
-        render(<PersonList />);
+        render(<PersonList />, { wrapper: MemoryRouter });
 
         // Excpecting loader to be present before fetch has returned
         expect(screen.getByTestId('loader')).toBeInTheDocument();
@@ -74,7 +75,7 @@ describe('PersonList', () => {
             getFetchStub(null, new Error('Fetch error')),
         );
 
-        render(<PersonList />);
+        render(<PersonList />, { wrapper: MemoryRouter });
 
         // Excpecting loader to be present before fetch has returned
         expect(screen.getByTestId('loader')).toBeInTheDocument();
